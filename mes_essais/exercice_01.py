@@ -1,84 +1,113 @@
 
-def calculer_ticket(prix_unitaire, quantite, remise_pct, tva_pct=16):
+# def calculer_ticket(prix_unitaire, quantite, remise_pct, tva_pct=16):
 
-    if type(prix_unitaire) not in (int, float) or not 0 <= prix_unitaire < float("inf"):
-        raise ValueError("Le prix doit être un nombre positif ou nul.")
+#     if type(prix_unitaire) not in (int, float) or not 0 <= prix_unitaire < float("inf"):
+#         raise ValueError("Le prix doit être un nombre positif ou nul.")
 
-    if type(quantite) is not int or quantite < 1:
-        raise ValueError("La quantité doit être un entier supérieur ou égal à 1.")
+#     if type(quantite) is not int or quantite < 1:
+#         raise ValueError("La quantité doit être un entier supérieur ou égal à 1.")
 
-    if type(remise_pct) not in (int, float) or not 0 <= remise_pct <= 100:
-        raise ValueError("La remise doit être comprise entre 0 et 100.")
+#     if type(remise_pct) not in (int, float) or not 0 <= remise_pct <= 100:
+#         raise ValueError("La remise doit être comprise entre 0 et 100.")
 
-    if type(tva_pct) not in (int, float) or not 0 <= tva_pct <= 100:
-        raise ValueError("La TVA doit être comprise entre 0 et 100.")
+#     if type(tva_pct) not in (int, float) or not 0 <= tva_pct <= 100:
+#         raise ValueError("La TVA doit être comprise entre 0 et 100.")
 
-    sous_total = prix_unitaire * quantite
+#     sous_total = prix_unitaire * quantite
 
-    remise = sous_total * remise_pct / 100
+#     remise = sous_total * remise_pct / 100
 
-    montant_ht = sous_total - remise
+#     montant_ht = sous_total - remise
 
-    tva = montant_ht * tva_pct / 100
+#     tva = montant_ht * tva_pct / 100
 
-    total_ttc = montant_ht + tva
+#     total_ttc = montant_ht + tva
 
-    return {
-        "sous_total": round(sous_total, 2),
-        "remise": round(remise, 2),
-        "montant_ht": round(montant_ht, 2),
-        "tva": round(tva, 2),
-        "total_ttc": round(total_ttc, 2)
-    }
+#     return {
+#         "sous_total": round(sous_total, 2),
+#         "remise": round(remise, 2),
+#         "montant_ht": round(montant_ht, 2),
+#         "tva": round(tva, 2),
+#         "total_ttc": round(total_ttc, 2)
+#     }
 
 
-print("===== BIENVENUE DANS NOTRE BOUTIQUE =====")
+# print("===== BIENVENUE DANS NOTRE BOUTIQUE =====")
 
-try:
-    prix = float(input("Prix unitaire (CDF) : "))
+# try:
+#     prix = float(input("Prix unitaire (CDF) : "))
 
-    quantite = int(input("Quantité : "))
+#     quantite = int(input("Quantité : "))
 
-    remise_pct = float(input("Remise (%) : "))
+#     remise_pct = float(input("Remise (%) : "))
 
-    saisie_tva = input("TVA (%) [Entrée = 16] : ").strip()
+#     saisie_tva = input("TVA (%) [Entrée = 16] : ").strip()
 
-    if saisie_tva == "":
-        tva_pct = 16
-    else:
-        tva_pct = float(saisie_tva)
+#     if saisie_tva == "":
+#         tva_pct = 16
+#     else:
+#         tva_pct = float(saisie_tva)
 
-    ticket = calculer_ticket(
-        prix,
-        quantite,
-        remise_pct,
-        tva_pct
-    )
+#     ticket = calculer_ticket(
+#         prix,
+#         quantite,
+#         remise_pct,
+#         tva_pct
+#     )
     
 
-    print("\n======================================")
-    print("            TICKET DE CAISSE")
-    print("======================================")
+#     print("\n======================================")
+#     print("            TICKET DE CAISSE")
+#     print("======================================")
 
-    print(f"Prix unitaire :    {prix:.2f} CDF")
-    print(f"Quantité :         {quantite}")
-    print(f"Remise appliquée : {remise_pct}%")
-    print(f"TVA appliquée :    {tva_pct}%")
+#     print(f"Prix unitaire :    {prix:.2f} CDF")
+#     print(f"Quantité :         {quantite}")
+#     print(f"Remise appliquée : {remise_pct}%")
+#     print(f"TVA appliquée :    {tva_pct}%")
 
-    print("--------------------------------------")
+#     print("--------------------------------------")
 
-    print(f"Sous-total :       {ticket['sous_total']:.2f} CDF")
-    print(f"Remise :           {ticket['remise']:.2f} CDF")
-    print(f"Montant HT :       {ticket['montant_ht']:.2f} CDF")
-    print(f"TVA :              {ticket['tva']:.2f} CDF")
+#     print(f"Sous-total :       {ticket['sous_total']:.2f} CDF")
+#     print(f"Remise :           {ticket['remise']:.2f} CDF")
+#     print(f"Montant HT :       {ticket['montant_ht']:.2f} CDF")
+#     print(f"TVA :              {ticket['tva']:.2f} CDF")
 
-    print("--------------------------------------")
+#     print("--------------------------------------")
 
-    print(f"TOTAL TTC :        {ticket['total_ttc']:.2f} CDF")
+#     print(f"TOTAL TTC :        {ticket['total_ttc']:.2f} CDF")
 
-    print("======================================")
-    print("         MERCI POUR VOTRE ACHAT !")
-    print("======================================")
+#     print("======================================")
+#     print("         MERCI POUR VOTRE ACHAT !")
+#     print("======================================")
 
-except ValueError as erreur:
-    print("\nERREUR :", erreur)
+# except ValueError as erreur:
+#     print("\nERREUR :", erreur)
+
+#calcul d'un ticket de caisse
+def calculer_ticket (prix_unitaire, quantite, remise_pct, pourcentage_tva ):
+   sous_total = prix_unitaire*quantite
+   remise = sous_total*remise_pct/100
+   montant_htc = sous_total - remise
+   tva= montant_htc*pourcentage_tva/100
+   total_ttc = montant_htc + tva
+   return {
+       "sous-total": sous_total,
+        "remise": remise,
+        "montant htc":montant_htc,
+        "tva":tva,
+        "total_ttc":total_ttc
+        }
+ticket = calculer_ticket(2000, 12, 10, 16)   
+print("=========TICKET DE CAISSE==========")
+print()
+
+print(f"Sous-total:{ticket['sous-total' ]}FC")
+print(f"Remise:{ticket['remise' ]}FC")
+print(f"Montant htc:{ticket['montant htc' ]}FC")
+print(f"Tva:{ticket['tva' ]}FC")
+print()
+print('------------------------------------------')
+print()
+print(f"TOTAL TTC:{ticket['total_ttc' ]}FC")
+print()
+print('============================================')
